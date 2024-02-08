@@ -29,6 +29,46 @@ class graph:
 
         pri_queue.sort(key=lambda x: x[1] )
         return pri_queue
+
+
+def maze_dfs( g , start ,end):
+
+
+    stack=[start]
+    visited=[]
+    path=[]
+    while (len(stack)>0):
+
+        if stack[-1] not in path:
+            path.append(stack[-1])
+
+        if (stack[-1] not in g.list ):
+            item=[]
+        else:
+            item=g.list[stack[-1]]
+
+        visited.append(stack[-1])
+
+
+
+
+        if stack[-1]==end:
+            print("Finshed")
+            return path
+
+
+
+        for ele in item :
+            if ele not in visited:
+                stack.append(ele)
+            else :
+                item.remove(ele)
+
+
+        if len(item)==0:
+            path.remove(stack[-1])
+            stack.pop()
+
 def topo_sort(g):
 
     pri_q=g.in_degree()
@@ -55,15 +95,48 @@ def topo_sort(g):
         pri_q.sort(key=lambda x:x[1] )
 
     return topo_sorted
+def TSP(g):
+    pri_queue=[(0,0)]
+    # nodes=g.list[0]
+    visited=[]
+    curr_cost = 0
+
+    while (len(visited)<= g.size):
+        print(pri_queue)
+        nodes=pri_queue.pop(0)
+        visited.append(nodes[0])
+        # curr_cost+=nodes[1]
+        print(nodes)
+
+        for node,_ in g.list[nodes[0]]:
+            if node in visited:
+                continue
+            pri_queue.append((node , _ +nodes[1]))
+        pri_queue.sort(key= lambda x:x[1])
+
+    return nodes[1]
+
+
+
+
+
+
+
 g=graph(6)
+g.list={0:[] , 1:[] , 2:[3] , 3:[1] , 4:[0,1], 5:[2,0]}
+
+
 g2=graph(4)
 g2.list={0:[1,2] , 1:[2] , 2:[0,3] , 3:[3] }
 g2.create_mat()
 
-g.list={0:[] , 1:[] , 2:[3] , 3:[1] , 4:[0,1], 5:[2,0]}
-print(topo_sort(g2))
 
+print(topo_sort(g2))
 g.create_mat()
 print(topo_sort(g))
 
+
+g3=graph(3)
+g3.list = {0:[[1,10],[3,20],[2,15]] , 1:[[0,10],[2,35],[3,25]] , 2:[[0,15],[1,35],[3,30]] , 3:[[0,20],[1,25],[2,30]]  }
+print(TSP(g3))
 
