@@ -31,43 +31,7 @@ class graph:
         return pri_queue
 
 
-def maze_dfs( g , start ,end):
 
-
-    stack=[start]
-    visited=[]
-    path=[]
-    while (len(stack)>0):
-
-        if stack[-1] not in path:
-            path.append(stack[-1])
-
-        if (stack[-1] not in g.list ):
-            item=[]
-        else:
-            item=g.list[stack[-1]]
-
-        visited.append(stack[-1])
-
-
-
-
-        if stack[-1]==end:
-            print("Finshed")
-            return path
-
-
-
-        for ele in item :
-            if ele not in visited:
-                stack.append(ele)
-            else :
-                item.remove(ele)
-
-
-        if len(item)==0:
-            path.remove(stack[-1])
-            stack.pop()
 
 def topo_sort(g):
 
