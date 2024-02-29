@@ -22,14 +22,16 @@ def cycle_catcher ( node , graph , visited , path):
     visited.add(node)
 
     flag=True
+    path.append(node)
     for des in graph.list[node]:
 
+
         if des in path :
-            print(path + [node])
+            print(path + [des])
             return True
         if des not in visited:
             flag = False
-            path.append(node)
+
             if (cycle_catcher ( des , graph , visited , path)):
                 return True
     if path and flag :
