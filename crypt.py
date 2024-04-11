@@ -1,6 +1,6 @@
 def crypt (a,b,c):
     letters = list(set(a+b+c))
-    numbers = set([ i for i in range (9)])
+    numbers = set([ i for i in range (10)])
     dic = {}
     permute(letters, numbers, dic, a, b, c)
 
